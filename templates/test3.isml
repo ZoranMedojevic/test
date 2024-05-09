@@ -1,0 +1,16 @@
+<isdecorate template="common/layout/page">
+    <isscript>
+        var assets = require('*/cartridge/scripts/assets.js');
+        assets.addJs('/js/orderHistory.js');
+        assets.addCss('/css/account/profile.css');
+    </isscript>
+    <nav class="navbar navbar-expand-lg">
+        <ul class="navbar-nav">
+            <isloop items="${pdict.navigationLinks}" var="navigationLink" status="loopstatus">
+                <li class="nav-item ${navigationLink.type == 'accountLogout' ? 'border-top border-bottom border-light d-lg-none' : ''}">
+                    <a class="nav-link ps-3 px-lg-3 ${navigationLink.active ? 'active': ''}" href="${navigationLink.href}">${navigationLink.text}</a>
+                </li>
+            </isloop>
+        </ul>
+    </nav>
+</isdecorate>
