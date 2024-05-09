@@ -5,7 +5,7 @@
 <isscript>
     var thumnailImageTransform = { scaleWidth: 85 };
 </isscript>
-
+<h1>test</h1>
 <isobject object="${product.raw}" view="detail" />
     <div class="product-detail product-wrapper pb-9" data-pid="${product.id}" data-url="${product.url}">
         <div class="container h-min-43p">
