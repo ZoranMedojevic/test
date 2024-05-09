@@ -1,0 +1,30 @@
+<div class="product-availability availability-${pdict.product.UUID || pdict.product.id}" data-ready-to-order="${pdict.product.readyToOrder}" data-available="${pdict.product.available}" >
+    <isif condition="${pdict.product.availability}">
+        <isloop items="${pdict.product.availability.messages}" var="message" status="loopstatus">
+            <span class="product-availability-message availability-msg product-availability-message-${pdict.product.availability.status[loopstatus.index]} d-inline-flex align-items-center mw-100">
+                <span class="text-truncate">${message}</span>
+                <isif condition="${pdict.product.availability.helpText[loopstatus.index]}">
+                    <button 
+                        class="btn-reset text-inherit p-1 pe-0 lh-1"
+                        title="${message}"
+                        data-bs-toggle="popover"
+                        data-bs-trigger="hover focus"
+                        data-bs-placement="auto"
+                        data-bs-html="true"
+                        data-bs-container="body"
+                        data-bs-content="${pdict.product.availability.helpText[loopstatus.index]}">
+                        <span class="svg-wrapper-inherit material-icon-wrapper-xx-small">
+                            <ismaterialicon iconname="info" type="outlined"/>
+                        </span>
+                    </button>
+                </isif>
+            </span>
+            <isif condition="${pdict.product.availability.availableForPreOrder}">
+                <span class="product-availability-eta text-gray-400 text-nowrap">
+                    ${Resource.msgf('helpText.availability.eta', 'common', null, pdict.product.availability.inStockDate)}
+                </span>
+            </isif>
+        </isloop>
+    </isif>
+</div>
+
