@@ -1,0 +1,191 @@
+<isset name="product" value="${pdict.product}" scope="page" />
+<isset name="isQuickView" value="${false}" scope="page" />
+<isset name="isProductSet" value="${pdict.product.productType === 'set'}" scope="page" />
+
+<isscript>
+    var thumnailImageTransform = { scaleWidth: 85 };
+</isscript>
+
+<isobject object="${product.raw}" view="detail" />
+    <div class="product-detail product-wrapper pb-9" data-pid="${product.id}" data-url="${product.url}">
+        <div class="container h-min-43p">
+            <!--Breadcrumbs-->
+            <isinclude template="components/breadcrumbs/pageBreadcrumbs"/>
+        </div>
+        <div class="container">
+            <div class="row d-block clearfix mb-4 mb-lg-0">
+                <div class="col-lg-6 float-lg-start">
+                    <!-- Product Images Carousel -->
+                    <isinclude template="product/components/imageCarousel" />
+                </div>
+                <div class="col-lg-5 pb-lg-4 float-lg-end product-detail-col-cta">
+                    <div class="product product-detail-cta-box" data-pid="${product.id}">
+                        <!-- Product Badges -->
+                        <isproductbadges product="${product}" />
+                        <div class="d-flex product-detail-info mb-3">
+                            <div class="product-detail-info-thumbnail">
+                                <div class="img-wrapper-ratio-1x1">
+                                    <img src="${product.images['main'][0].getImageURL(thumnailImageTransform)}"
+                                        alt="${product.images['main'][0].alt}"
+                                        width="85"
+                                        height="85"
+                                        sizes="85px"
+                                        srcset="${product.images['main'][0].getImageSrcSet([85,170])}"
+                                        loading="lazy"
+                                    >
+                                </div>
+                            </div>
+                            <div class="product-detail-info-text">
+                                <!-- Product Brand Logo -->
+                                <a href="${product.brandDetails.link}" aria-current="page">
+                                    <isif condition="${product.brandDetails.image}">
+                                        <img src="${product.brandDetails.image}"
+                                            alt="${product.brand}"
+                                            class="product-detail-cta-box-brand-logo w-auto h-auto mb-3"
+                                            loading="lazy"
+                                            width="90"
+                                            height="30"
+                                            onerror="this.style.display='none'"
+                                        >
+                                    </isif>
+                                </a>
+                                <!-- Product Name -->
+                                <h1 class="product-name h3 mb-0">${product.productName}</h1>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <isinclude template="product/components/pidRating" />
+                        </div>
+                        <div class="mb-3">
+                            <isinclude template="product/components/shortDescription" />
+                        </div>
+                        <div class="attributes">
+                            <!-- Attributes and Quantity -->
+                            <isinclude template="product/components/mainAttributes" />
+
+                            <isif condition="${product.efficiencyLabels && product.efficiencyLabels.length > 0}">
+                                <isinclude template="product/components/efficiencyLabels" />
+                            </isif>
+
+                            <isset name="isBundle" value="${false}" scope="page" />
+                            <isset name="loopState" value="{count: 1}" scope="page" />
+                            <isloop items="${product.variationAttributes}" var="attr" status="attributeStatus">
+                                <div class="row" data-attr="${attr.id}">
+                                    <div class="col-8">
+                                        <isinclude template="product/components/variationAttribute" />
+                                    </div>
+
+                                    <isif condition="${attributeStatus.last && !isBundle}">
+                                        <!-- Quantity Drop Down Menu -->
+                                        <div class="attribute quantity col-4">
+                                            <isinclude template="product/components/quantity" />
+                                        </div>
+                                    </isif>
+                                </div>
+                            </isloop>
+
+                            <div class="product-options">
+                                <isif condition="${product.options && product.options.length > 0}">
+                                    <isinclude template="product/components/options" />
+                                </isif>
+                            </div>
+
+                            <!-- Size Chart -->
+                            <isif condition="${product.variationAttributes && product.sizeChartId}">
+                                <div class="row">
+                                    <div class="size-chart col-12">
+                                        <isinclude template="product/components/sizeChart" />
+                                    </div>
+                                </div>
+                            </isif>
+
+                            <!-- Applicable Promotions -->
+                            <div class="promotions">
+                                <isinclude template="product/components/promotions" />
+                            </div>
+
+                            <!-- Free Shipping Indicator -->
+                            <isif condition="${product.freeShipping}">
+                                <div class="mb-3">
+                                    <isproductfreeshipping />
+                                </div>
+                            </isif>
+                            <div class="prices-add-to-cart-actions ${!product.configuratorProduct ? 'sticky-mobil' : ''}">
+                                <isif condition="${product.price.sales.value}">
+                                    <div class="d-flex mb-2 mb-sm-3 justify-content-between align-items-end align-items-sm-start flex-sm-column">
+                                        <!-- Prices -->
+                                        <div class="prices mb-sm-2">
+                                            <div class="d-inline-block"><isinclude url="${URLUtils.url('Product-PDPPriceWrapper', 'pid', product.id)}" /></div>
+                                            <span class="d-inline-block text-gray-400 x-small">${Resource.msgf('label.include.vat', 'product', null)}</span>
+                                        </div>
+                                        <!-- Availability Indicator -->
+                                        <div id="js-product-availability-container">
+                                        </div>
+                                    </div>
+                                    <!-- Cart and [Optionally] Apple Pay -->
+                                    <!-- Remote include for AddtoCart button -->
+                                    <div class="d-flex flex-wrap flex-xxxl-nowrap">
+                                        <isif condition="${product.configuratorProduct}">
+                                            <span data-scroll-to="${'#configurator-product-anchor'}" class="btn btn-lg btn-outline-primary w-100 w-xxxl-auto mb-3 mb-xxxl-0 me-xxxl-3">
+                                                ${Resource.msg('label.configure', 'common', null)}
+                                            </span>
+                                        </isif>
+                                        
+                                        <div class="flex-1">
+                                            <isinclude url="${URLUtils.url('Product-AddToCartProduct', 'pid', product.id, 'quantity', request.httpParameterMap.quantity.value || 1, 'configurator', product.configuratorProduct, 'backFromCart', pdict.backFromCart, 'lineItemId', pdict.lineItemId, 'configuratorConfig', pdict.configuratorConfig, 'token', pdict.token)}"/>
+                                        </div>
+                                        <isif condition="${!product.eol || (product.eol && product.available)}">
+                                            <isif condition="${product.productType !== 'master'}">
+                                                <div class="flex-shrink-1 ms-3">
+                                                    <span class="wishlist-tile btn btn-outline-primary btn-lg" role="button" data-add-url="${URLUtils.url('Wishlist-AddProduct')}" data-remove-url="${URLUtils.url('Wishlist-RemoveProduct')}" title="${Resource.msg('wishlist.addto.wishlist.heart', 'wishlist', null)}">
+                                                        <ismaterialicon iconname="favorite_border" type="custom" />
+                                                    </span>
+                                                </div>
+                                            </isif>
+                                        </isif>
+                                    </div>
+                                <iselse/>
+                                    <div class="alert alert-info d-flex align-items-center mb-0" role="alert">
+                                        <div class="svg-wrapper-inherit"><ismaterialicon iconname="info" type="outlined"/></div>
+                                        <div class="ms-2"><isprint value="${Resource.msg('product.no.price.message', 'product', null)}" /></div>
+                                    </div>
+                                </isif>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 clear-left">
+                    <!-- Product custom attributes -->
+                    <div class="product-detail-attributes py-3">
+                        <isinclude template="product/components/productAttributes" />
+                    </div>
+                    <isif condition="${product.eol && !product.available}">
+                        <div class="mt-4">
+                            <isslot id="eol-product-recommendations" context="global" description="EOL product recommendations" context-object="${product.raw}"/>
+                        </div>
+                    </isif>
+                    <isif condition="${product.configuratorProduct}">
+                        <h2 class="text-capitalize pt-3 mb-3" id="configurator-product-anchor">${Resource.msg('label.configure', 'common', null)}</h2>
+                        <isinclude url="${URLUtils.https('Configurator-GetSections', 'pid', product.id, 'backFromCart', pdict.backFromCart, 'lineItemId', pdict.lineItemId, 'configuratorConfig', pdict.configuratorConfig)}" />
+                    </isif>
+                    <div>
+                        <isslot id="cts-recommendations-m" description="Complete the set products" context="global" context-object="${product.raw}" />
+                    </div>
+                    <isset name="loopState" value="{count: 1}" scope="page" />
+                    <isinclude template="product/components/descriptionAndDetails" />
+                </div>
+            </div>
+        </div>
+        <div class="addtocart-popup">
+            <isinclude template="product/components/addToCartConfirmationModal" />
+        </div>
+        <div class="container">
+            <div class="recommendations">
+                <isslot id="product-recommendations-m" description="Recommended products" context="global" context-object="${product.raw}" />
+            </div>
+        </div>
+        <div class="notifyme-popup">
+            <isinclude template="notifyme/notifyMeModal" />
+        </div>
+    </div>
+</isobject>
