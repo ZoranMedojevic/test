@@ -1,0 +1,36 @@
+<isinclude template="/components/modules" sf-toolkit="off" />
+<isif condition="${pdict.breadcrumbs && pdict.breadcrumbs.length > 0}">
+    <nav class="breadcrumb-wrapper" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="${URLUtils.url('Home-Show')}"
+                   title="${Resource.msgf('global.homepage.tooltip', 'common', null, Resource.msg('global.storename', 'common', null), Resource.msg('global.home', 'common', null))}">
+                    <ismaterialicon iconname="home" />
+                </a>
+            </li>
+            <isloop items="${pdict.breadcrumbs}" var="breadcrumbValue" status="loopState">
+                <isif condition="${loopState.last}">
+                    <isif condition="${(pdict.productSearch && pdict.productSearch.isCategorySearch) || breadcrumbValue.url == null}">
+                        <li class="breadcrumb-item active" aria-current="page">
+                            ${breadcrumbValue.htmlValue}
+                        </li>
+                        <iselse/>
+                        <li class="breadcrumb-item">
+                            <a href="${breadcrumbValue.url}">
+                                ${breadcrumbValue.htmlValue}
+                            </a>
+                        </li>
+                    </isif>
+                    <iselse/>
+                    <li class="breadcrumb-item">
+                        <a href="${breadcrumbValue.url}">
+                            ${breadcrumbValue.htmlValue}
+                        </a>
+                    </li>
+                </isif>
+            </isloop>
+        </ol>
+    </nav>
+    <iselse/>
+    <div class="pt-5 pb-6"></div>
+</isif>
