@@ -3,6 +3,7 @@
         var assets = require('*/cartridge/scripts/assets.js');
         assets.addJs('/js/orderHistory.js');
         assets.addCss('/css/account/profile.css');
+        assets.addCss('/css/home.css');
     </isscript>
     <nav class="navbar navbar-expand-lg">
         <ul class="navbar-nav">
