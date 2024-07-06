@@ -1,0 +1,3 @@
+has-xml:
+  - changed-files:
+      - any-glob-to-any-file: '**/*.xml'
