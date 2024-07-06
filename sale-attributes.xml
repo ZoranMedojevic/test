@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<catalog xmlns="https://www.demandware.com/xml/impex/catalog/2006-10-31" catalog-id="master-catalog-caseking">
+  <product product-id="T-GAZU-867">
+    <custom-attributes>
+      <custom-attribute attribute-id="topSeller">true</custom-attribute>
+      <custom-attribute attribute-id="onSale">true</custom-attribute>
+    </custom-attributes>
+  </product>
+  <product product-id="GAJO-327">
+    <custom-attributes>
+      <custom-attribute attribute-id="topSeller">true</custom-attribute>
+      <custom-attribute attribute-id="onSale">true</custom-attribute>
+    </custom-attributes>
+  </product>
+  <product product-id="KSMX-014">
+    <custom-attributes>
+      <custom-attribute attribute-id="topSeller">true</custom-attribute>
+      <custom-attribute attribute-id="onSale">true</custom-attribute>
+    </custom-attributes>
+  </product>
+  <product product-id="T-KSMX-014">
+    <custom-attributes>
+      <custom-attribute attribute-id="topSeller">true</custom-attribute>
+      <custom-attribute attribute-id="onSale">true</custom-attribute>
+    </custom-attributes>
+  </product>
+  <product product-id="T-GAJO-327">
+    <custom-attributes>
+      <custom-attribute attribute-id="topSeller">true</custom-attribute>
+      <custom-attribute attribute-id="onSale">true</custom-attribute>
+    </custom-attributes>
+  </product>
+  <product product-id="GAZU-867">
+    <custom-attributes>
+      <custom-attribute attribute-id="topSeller">true</custom-attribute>
+      <custom-attribute attribute-id="onSale">true</custom-attribute>
+    </custom-attributes>
+  </product>
+  <product product-id="KSMX-011">
+    <custom-attributes>
+      <custom-attribute attribute-id="topSeller">true</custom-attribute>
+      <custom-attribute attribute-id="onSale">true</custom-attribute>
+    </custom-attributes>
+  </product>
+  <product product-id="GAJO-538">
+    <custom-attributes>
+      <custom-attribute attribute-id="topSeller">true</custom-attribute>
+      <custom-attribute attribute-id="onSale">true</custom-attribute>
+    </custom-attributes>
+  </product>
+  <product product-id="T-KSMX-011">
+    <custom-attributes>
+      <custom-attribute attribute-id="topSeller">true</custom-attribute>
+      <custom-attribute attribute-id="onSale">true</custom-attribute>
+    </custom-attributes>
+  </product>
+  <product product-id="T-GAJO-538">
+    <custom-attributes>
+      <custom-attribute attribute-id="topSeller">true</custom-attribute>
+      <custom-attribute attribute-id="onSale">true</custom-attribute>
+    </custom-attributes>
+  </product>
+</catalog>
