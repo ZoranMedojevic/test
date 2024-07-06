@@ -2,7 +2,7 @@
 <catalog xmlns="https://www.demandware.com/xml/impex/catalog/2006-10-31" catalog-id="master-catalog-caseking">
   <product product-id="T-GAZU-867">
     <custom-attributes>
-      <custom-attribute attribute-id="topSeller">true</custom-attribute>
+      <custom-attribute attribute-id="topSeller">false</custom-attribute>
       <custom-attribute attribute-id="onSale">true</custom-attribute>
     </custom-attributes>
   </product>
