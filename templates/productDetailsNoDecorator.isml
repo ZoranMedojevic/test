@@ -96,7 +96,6 @@
                                 </div>
                             </isif>
 
-                            <!-- Applicable Promotions -->
                             <div class="promotions">
                                 <isinclude template="product/components/promotions" />
                             </div>
