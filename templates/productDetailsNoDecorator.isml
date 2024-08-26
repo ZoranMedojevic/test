@@ -60,7 +60,6 @@
                             <isinclude template="product/components/shortDescription" />
                         </div>
                         <div class="attributes">
-                            <!-- Attributes and Quantity -->
                             <isinclude template="product/components/mainAttributes" />
 
                             <isif condition="${product.efficiencyLabels && product.efficiencyLabels.length > 0}">
