@@ -88,7 +88,6 @@
                                 </isif>
                             </div>
 
-                            <!-- Size Chart -->
                             <isif condition="${product.variationAttributes && product.sizeChartId}">
                                 <div class="row">
                                     <div class="size-chart col-12">
