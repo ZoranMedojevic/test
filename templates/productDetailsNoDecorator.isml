@@ -66,7 +66,7 @@
                             <isif condition="${product.efficiencyLabels && product.efficiencyLabels.length > 0}">
                                 <isinclude template="product/components/efficiencyLabels" />
                             </isif>
-
+                            <!--- comment --->
                             <isset name="isBundle" value="${false}" scope="page" />
                             <isset name="loopState" value="{count: 1}" scope="page" />
                             <isloop items="${product.variationAttributes}" var="attr" status="attributeStatus">
