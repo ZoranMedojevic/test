@@ -66,8 +66,7 @@
                             <isif condition="${product.efficiencyLabels && product.efficiencyLabels.length > 0}">
                                 <isinclude template="product/components/efficiencyLabels" />
                             </isif>
-                            <!--- comment --->
-                            <!--- sub-pr --->
+
                             <isset name="isBundle" value="${false}" scope="page" />
                             <isset name="loopState" value="{count: 1}" scope="page" />
                             <isloop items="${product.variationAttributes}" var="attr" status="attributeStatus">
@@ -94,7 +93,6 @@
                             <!-- Size Chart -->
                             <isif condition="${product.variationAttributes && product.sizeChartId}">
                                 <div class="row">
-                                    <!-- new comment -->
                                     <div class="size-chart col-12">
                                         <isinclude template="product/components/sizeChart" />
                                     </div>
